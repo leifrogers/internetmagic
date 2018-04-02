@@ -85,6 +85,12 @@ function mousePressed() {
             newPoint = [mouseX, mouseY];
         }
     }
+    if (mouseButton == RIGHT && mouseOnGrid()) {
+        save();
+    }
+    if (mouseButton == CENTER && mouseOnGrid()) {
+        fillColor();
+    }
 }
 
 function mouseReleased() {
@@ -379,12 +385,12 @@ function drawLine(x0, y0, x1, y1, preview) {
     while (true) {
         box = getTotalCurrentBox(x0, y0);
 
-        //try {
-        __ret = getLocation(box);
-        tryShape(__ret, preview);
-        //}
-        //catch (ex) {
-        //}
+        try {
+            __ret = getLocation(box);
+            tryShape(__ret, preview);
+        }
+        catch (ex) {
+        }
         if ((x0 == x1) && (y0 == y1)) break;
         e2 = 2 * err;
         if (e2 > -dy) {
@@ -438,7 +444,24 @@ function fillCircle(x, y, r, preview) {
 
 
 function setBrush(i) {
-    brush = i;
+    brush = i
+    function getPalette() {
+        if (brush === 2) {
+            $(document).ready(function () {
+                $("#circleInfo").html("Radius of circle\n" +
+                    "<br>\n" +
+                    "        <input id=\"radius\" type=\"range\" min=\"0\" max=\"300\" value=\"50\">");
+
+            });
+        }
+        else{
+            $(document).ready(function () {
+                $("#circleInfo").html("");
+            });
+        }
+    }
+
+    getPalette();
 }
 
 function switchPalette(palette) {
@@ -503,7 +526,7 @@ function drawSuperFastSVG() {
             len3 = gridDetails[grid][3];
             while (len3--) {
                 if (totalGrid[grid][len][len3][5] === 255)
-                middle += '<rect x="'+ totalGrid[grid][len][len3][0] + '" y="'+totalGrid[grid][len][len3][1] +'" width="' +gridDetails[grid][0] +'" height="' + gridDetails[grid][1] +'" fill="rgb('+ totalGrid[grid][len][len3][2] + ',' + totalGrid[grid][len][len3][3] + ',' +totalGrid[grid][len][len3][4] + ')"/>';
+                    middle += '<rect x="'+ totalGrid[grid][len][len3][0] + '" y="'+totalGrid[grid][len][len3][1] +'" width="' +gridDetails[grid][0] +'" height="' + gridDetails[grid][1] +'" fill="rgb('+ totalGrid[grid][len][len3][2] + ',' + totalGrid[grid][len][len3][3] + ',' +totalGrid[grid][len][len3][4] + ')"/>';
             }
 
         }
@@ -517,6 +540,7 @@ function selectText(element) {
         var range = document.body.createTextRange();
         range.moveToElementText(text);
         range.select();
+        document.execCommand("Copy");
     }
     else if (window.getSelection) {
         var selection = window.getSelection();
@@ -524,5 +548,6 @@ function selectText(element) {
         range2.selectNodeContents(text);
         selection.removeAllRanges();
         selection.addRange(range2);
+        document.execCommand("Copy");
     }
 }
