@@ -1,13 +1,13 @@
 "use strict";
-var totalGrid = [];
-var traveled = [];
-var finder = [1];
-var branches = [];
+let totalGrid = [];
+let traveled = [];
+let finder = [1];
+let branches = [];
 
-var gridDetails = [16, 16];
+let gridDetails = [16, 16];
 
-var tripCounter = (function () {
-    var privateCounter = 0;
+let tripCounter = (function () {
+    let privateCounter = 0;
 
     function changeBy(val) {
         privateCounter += val;
@@ -40,12 +40,12 @@ var tripCounter = (function () {
     }
 });
 
-var travelSize = tripCounter();
-var travelLength = tripCounter();
+let travelSize = tripCounter();
+let travelLength = tripCounter();
 travelLength.setOne();
 
 function setup() {
-    var myCanvas = createCanvas(736, 544);
+    let myCanvas = createCanvas(736, 544);
     myCanvas.parent('grid');
     background(150);
     fill(0, 255, 0);
@@ -77,14 +77,14 @@ function draw() {
 }
 
 function setupTotalBoxes() {
-    var counter = 1;
-    var grid = [];
-    var rowY = 0;
-    for (var i = 0; i < gridDetails[2]; i++) {
+    let counter = 1;
+    let grid = [];
+    let rowY = 0;
+    for (let i = 0; i < gridDetails[2]; i++) {
         rowY = i * gridDetails[1];
-        var newRow = [];
-        var localX = 0;
-        for (var j = 0; j < gridDetails[3]; j++) {
+        let newRow = [];
+        let localX = 0;
+        for (let j = 0; j < gridDetails[3]; j++) {
             //north(3), south(4), east(5), west(6)
             newRow.push([localX, rowY, counter, false, false, false, false]);
             counter++;
@@ -97,13 +97,13 @@ function setupTotalBoxes() {
 
 function makeSuperFastBoxes() {
     traveled.push(getRandomInt(1, totalCells()));
-    var currentRow = 0;
-    var currentColumn = 0;
+    let currentRow = 0;
+    let currentColumn = 0;
     while (travelLength.value() < totalCells()) {
         //row, column
         //north(3), south(4), east(5), west(6)
-        var len = gridDetails[2];
-        var len3 = gridDetails[3];
+        let len = gridDetails[2];
+        let len3 = gridDetails[3];
         while (len--) {
             len3 = gridDetails[3];
             while (len3--) {
@@ -113,12 +113,12 @@ function makeSuperFastBoxes() {
                 }
             }
         }
-        var up = currentRow - 1;
-        var down = currentRow + 1;
-        var left = currentColumn - 1;
-        var right = currentColumn + 1;
+        let up = currentRow - 1;
+        let down = currentRow + 1;
+        let left = currentColumn - 1;
+        let right = currentColumn + 1;
         //north, south, east, west
-        var choices = [true, true, true, true];
+        let choices = [true, true, true, true];
 
         if (up >= 0) {
             choices[0] = traveled.includes(totalGrid[up][currentColumn][2]);
@@ -132,9 +132,9 @@ function makeSuperFastBoxes() {
         if (left >= 0) {
             choices[3] = traveled.includes(totalGrid[currentRow][left][2]);
         }
-        var actualChoices = [];
-        var counter = 1;
-        for (var i = 0; i < 4; i++) {
+        let actualChoices = [];
+        let counter = 1;
+        for (let i = 0; i < 4; i++) {
             if (!choices[i]) {
                 actualChoices.push([counter]);
             }
@@ -142,7 +142,7 @@ function makeSuperFastBoxes() {
         }
 
         if (actualChoices.length > 0) {
-            var direction = actualChoices[getRandomInt(0, actualChoices.length)][0].valueOf();
+            let direction = actualChoices[getRandomInt(0, actualChoices.length)][0].valueOf();
             if (direction === 1) {
                 totalGrid[currentRow][currentColumn][3] = true;
                 totalGrid[up][currentColumn][4] = true;
@@ -179,15 +179,15 @@ function makeSuperFastBoxes() {
 }
 
 function drawSuperFastBoxes() {
-    var len = gridDetails[2];
-    var len3 = gridDetails[3];
+    let len = gridDetails[2];
+    let len3 = gridDetails[3];
     while (len--) {
         len3 = gridDetails[3];
         while (len3--) {
-            var leftX = totalGrid[len][len3][0];
-            var rightX = totalGrid[len][len3][0] + gridDetails[1] - 1;
-            var topY = totalGrid[len][len3][1];
-            var bottomY = totalGrid[len][len3][1] + gridDetails[0] - 1;
+            let leftX = totalGrid[len][len3][0];
+            let rightX = totalGrid[len][len3][0] + gridDetails[1] - 1;
+            let topY = totalGrid[len][len3][1];
+            let bottomY = totalGrid[len][len3][1] + gridDetails[0] - 1;
 
             //north(3), south(4), east(5), west(6)
             //top line
@@ -214,15 +214,15 @@ function drawSuperFastBoxes() {
 //maze solver portion
 
 function makeSolutions() {
-    var currentRow = 0;
-    var currentColumn = 0;
+    let currentRow = 0;
+    let currentColumn = 0;
     //row, column
     //north(3), south(4), east(5), west(6)
     fill(0, 255, 0);
-    var len = gridDetails[2];
-    var len3 = gridDetails[3];
-    for (var i = 0; i < len; i++) {
-        for (var j = 0; j < len3; j++) {
+    let len = gridDetails[2];
+    let len3 = gridDetails[3];
+    for (let i = 0; i < len; i++) {
+        for (let j = 0; j < len3; j++) {
             if (totalGrid[i][j][2] === finder[travelSize.value()]) {
                 currentRow = i;
                 currentColumn = j;
@@ -231,12 +231,12 @@ function makeSolutions() {
     }
     rect(totalGrid[currentRow][currentColumn][0], totalGrid[currentRow][currentColumn][1], 10, 10);
     //north, south, east, west
-    var choices = [totalGrid[currentRow][currentColumn][3], totalGrid[currentRow][currentColumn][4], totalGrid[currentRow][currentColumn][5], totalGrid[currentRow][currentColumn][6]];
-    var actualChoices = [];
+    let choices = [totalGrid[currentRow][currentColumn][3], totalGrid[currentRow][currentColumn][4], totalGrid[currentRow][currentColumn][5], totalGrid[currentRow][currentColumn][6]];
+    let actualChoices = [];
 
     if (branches.length > 0) {
-        var useFunction = true;
-        for (var z = 0; z < branches.length; z++) {
+        let useFunction = true;
+        for (let z = 0; z < branches.length; z++) {
 
             if (branches[z].indexOf(totalGrid[currentRow][currentColumn][2]) !== -1) {
                 useFunction = false;
@@ -257,20 +257,20 @@ function makeSolutions() {
     }
 
     function pickSpecificDirectionsSolution(actualChoices, currentRow, currentColumn) {
-        var newCurrentRow = 0;
-        var newCurrentColumn = 0;
+        let newCurrentRow = 0;
+        let newCurrentColumn = 0;
         if (actualChoices.length !== 0) {
-            var direction = actualChoices[getRandomInt(0, actualChoices.length)].valueOf();
-            for (var z = actualChoices.length - 1; z >= 0; z--) {
+            let direction = actualChoices[getRandomInt(0, actualChoices.length)].valueOf();
+            for (let z = actualChoices.length - 1; z >= 0; z--) {
                 if (actualChoices[z] === direction) {
                     actualChoices.splice(z, 1);
                 }
             }
 
-            var up = currentRow - 1;
-            var down = currentRow + 1;
-            var left = currentColumn - 1;
-            var right = currentColumn + 1;
+            let up = currentRow - 1;
+            let down = currentRow + 1;
+            let left = currentColumn - 1;
+            let right = currentColumn + 1;
 
             if (direction === 1) {
                 newCurrentRow = up;
@@ -291,7 +291,7 @@ function makeSolutions() {
                 newCurrentRow = currentRow;
             }
 
-            var choices = [totalGrid[newCurrentRow][newCurrentColumn][3], totalGrid[newCurrentRow][newCurrentColumn][4], totalGrid[newCurrentRow][newCurrentColumn][5], totalGrid[newCurrentRow][newCurrentColumn][6]];
+            let choices = [totalGrid[newCurrentRow][newCurrentColumn][3], totalGrid[newCurrentRow][newCurrentColumn][4], totalGrid[newCurrentRow][newCurrentColumn][5], totalGrid[newCurrentRow][newCurrentColumn][6]];
 
             if (direction === 1) {
                 choices[1] = false;
@@ -324,9 +324,9 @@ function makeSolutions() {
     }
 
     function getChoices(choices) {
-        var actualChoices = [];
-        var counter = 1;
-        for (var l = 0; l < choices.length; l++) {
+        let actualChoices = [];
+        let counter = 1;
+        for (let l = 0; l < choices.length; l++) {
             if (choices[l]) {
                 actualChoices.push(counter);
             }
@@ -338,9 +338,9 @@ function makeSolutions() {
 
 function showPath() {
     fill(255, 0, 0);
-    for (var i = 0; i < finder.length; i++) {
-        var len = gridDetails[2];
-        var len3 = gridDetails[3];
+    for (let i = 0; i < finder.length; i++) {
+        let len = gridDetails[2];
+        let len3 = gridDetails[3];
         while (len--) {
             len3 = gridDetails[3];
             while (len3--) {

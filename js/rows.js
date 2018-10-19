@@ -1,18 +1,18 @@
-var theRowColor = [];
-var theRowFlipper = [];
-var numberOfRows = 50;
-var grader = 0;
+let theRowColor = [];
+let theRowFlipper = [];
+const numberOfRows = 50;
+let grader = 0;
 
 function setup() {
     "use strict";
     createCanvas(windowWidth, windowHeight);
     noStroke();
     background(0);
-    frameRate(random(60));
-    var flipper = true;
-    var colors = 0;
+    frameRate(30);
+    let flipper = true;
+    let colors = 0;
     grader = random(25);
-    for (var i = (numberOfRows); i >= 0; i--) {
+    for (let i = numberOfRows; i >= 0; i--) {
         if (flipper === true) {
             colors = colors - grader;
         }
@@ -37,7 +37,7 @@ function draw() {
 
 function drawRows() {
     "use strict";
-    for (var currentRow = numberOfRows; currentRow >= 0; currentRow--) {
+    for (let currentRow = numberOfRows; currentRow >= 0; currentRow--) {
         fill(theRowColor[currentRow]);
         rect(0, (currentRow * numberOfRows), windowWidth, (windowHeight / numberOfRows));
         if (theRowFlipper[currentRow] === true) {

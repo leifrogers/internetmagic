@@ -132,7 +132,7 @@ function drawCircle(x, y, r) {
         var box = getCurrentBox(newX, newY);
         try {
             var __ret = getLocation(box);
-            drawPreview(__ret.curRow, __ret.curCol)
+          drawPreview(__ret.curRow, __ret.curCol);
 
         }
         catch (ex) {

@@ -1,13 +1,13 @@
-var lines = [];
-var amountOfLines = getRandomInt(50,150);
+let lines = [];
+let amountOfLines = getRandomInt(50,150);
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     noStroke();
     smooth();
     background(0);
-    frameRate(20);
-    for (var i = 0; i < amountOfLines; i++) {
+    frameRate(60);
+    for (let i = 0; i < amountOfLines; i++) {
         lines.push({
             x: random(windowWidth),
             y: random(windowHeight),
@@ -19,14 +19,14 @@ function setup() {
 
 function draw() {
     "use strict";
-    for (var i = 0; i < amountOfLines; i++) {
+    for (let i = 0; i < amountOfLines; i++) {
         moveAbout(lines[i]);
     }
 }
 
 function pickRandom(direction) {
     "use strict";
-    var rand = random(8);
+    let rand = random(8);
     if ((rand >= 0) && (rand <= 2)) {
         direction = "up";
     }
