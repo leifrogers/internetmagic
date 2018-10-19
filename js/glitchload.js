@@ -1,6 +1,6 @@
 var img;
 function preload() {
-  img = loadImage('http://localhost/experiments/sorting/sort0.php');
+  img = loadImage(glitchURL);
 }
 function setup() {
     createCanvas(img.width, img.height);

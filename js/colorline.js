@@ -1,5 +1,5 @@
 let lines = [];
-let amountOfLines = getRandomInt(50,150);
+let amountOfLines = getRandomInt(50, 150);
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -11,7 +11,7 @@ function setup() {
         lines.push({
             x: random(windowWidth),
             y: random(windowHeight),
-            color: {r: random(255), g: random(255), b: random(255)},
+            color: { r: random(255), g: random(255), b: random(255) },
             direction: "down"
         });
     }
@@ -71,7 +71,7 @@ function moveAbout(line) {
     if (line.y > windowHeight) {
         line.y = 0;
     }
-    fill(line.color.r,line.color.g,line.color.b);
+    fill(line.color.r, line.color.g, line.color.b);
     ellipse(line.x, line.y, 5, 5);
 }
 

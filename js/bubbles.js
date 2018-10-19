@@ -86,20 +86,7 @@ function Row(grid, rowNumber) {
     }
     grid.push(newRow);
 }
-/**
-function drawBoxes() {
-    for (var i = 0; i < MovingCircles.ourBox.rows; i++) {
-        for (var j = 0; j < MovingCircles.ourBox.columns; j++) {
-            drawBox(i, j);
-        }
-    }
-}
 
-function drawBox(i, j) {
-    fill(newBoxes[i][j].r, newBoxes[i][j].green, newBoxes[i][j].b);
-    rect(newBoxes[i][j].x, newBoxes[i][j].y, MovingCircles.ourBox.theWidth, MovingCircles.ourBox.theHeight);
-}
-**/
 function getLocation(box) {
     var curCol = box.x / MovingCircles.ourBox.theWidth;
     var curRow = box.y / MovingCircles.ourBox.theHeight;
