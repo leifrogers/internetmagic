@@ -5,6 +5,7 @@ There's nothing special here.  It makes a randomly colored grid.  whoo.
 
 # Maze
 Generates a maze then solves the maze.  Entrance is the top left, exit is the bottom right.
+<a href="maze.html">Example Here</a>
 
 # Bubbles
 Pink pixel bubbles floating up.  It makes me smile.
