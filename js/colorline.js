@@ -11,7 +11,11 @@ function setup() {
         lines.push({
             x: random(windowWidth),
             y: random(windowHeight),
-            color: { r: random(255), g: random(255), b: random(255) },
+            color: {
+                r: random(255),
+                g: random(255),
+                b: random(255)
+            },
             direction: "down"
         });
     }

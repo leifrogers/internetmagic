@@ -1,3 +1,9 @@
+/**
+ * 
+ * Pink retro 8-bit bubble float up the canvas
+ * 
+ */
+
 var MovingCircles = {};
 
 MovingCircles.ourBox = {
@@ -8,6 +14,10 @@ MovingCircles.ourBox = {
     circleArrayLength: 0
 };
 
+
+/**
+ * sets color for the bubble
+ */
 MovingCircles.ourColors = {
     r: 255,
     g: 192,
@@ -48,12 +58,10 @@ function setup() {
     noStroke();
     noSmooth();
     setupBoxes(newBoxes);
-    //drawBoxes();
     background(119);
 }
 
 function draw() {
-   // drawBoxes();
     background(119);
     for (var i = 0; i < MovingCircles.ourBox.circleArrayLength; i++) {
         drawCircle(Circles[i].x, Circles[i].y, Circles[i].radius);
@@ -62,8 +70,7 @@ function draw() {
             Circles[i].y = windowHeight + random(150);
             Circles[i].radius = random(60);
             Circles[i].speed = random(10);
-        }
-        else {
+        } else {
             Circles[i].y -= Circles[i].speed;
         }
     }
@@ -90,7 +97,10 @@ function Row(grid, rowNumber) {
 function getLocation(box) {
     var curCol = box.x / MovingCircles.ourBox.theWidth;
     var curRow = box.y / MovingCircles.ourBox.theHeight;
-    return {curRow: curRow, curCol: curCol};
+    return {
+        curRow: curRow,
+        curCol: curCol
+    };
 }
 
 function getCurrentBox(x, y) {
@@ -101,7 +111,7 @@ function getCurrentBox(x, y) {
         for (var j = 0; j < MovingCircles.ourBox.columns; j++) {
             endX = newBoxes[i][j].x + MovingCircles.ourBox.theWidth - 1;
             endY = newBoxes[i][j].y + MovingCircles.ourBox.theHeight - 1;
-            if ((x >= newBoxes[i][j].x) && (x <= endX) && (y >= newBoxes[i][j].y ) && (y <= endY)) {
+            if ((x >= newBoxes[i][j].x) && (x <= endX) && (y >= newBoxes[i][j].y) && (y <= endY)) {
                 return newBoxes[i][j];
             }
         }
@@ -119,11 +129,9 @@ function drawCircle(x, y, r) {
         var box = getCurrentBox(newX, newY);
         try {
             var __ret = getLocation(box);
-          drawPreview(__ret.curRow, __ret.curCol);
+            drawPreview(__ret.curRow, __ret.curCol);
 
-        }
-        catch (ex) {
-        }
+        } catch (ex) {}
     }
 }
 

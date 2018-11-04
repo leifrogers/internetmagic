@@ -1,4 +1,4 @@
-Totes rando collection of p5.js stuff I've rambled about on.
+Totes rando collection of p5.js stuff I've made and collected into one big folder.
 
 # Grids
 There's nothing special here.  It makes a randomly colored grid.  whoo.
@@ -14,7 +14,8 @@ Pink pixel bubbles floating up.  It makes me smile.
 
 # Lines
 Makes some randomly colored lines and moves them about...randomly.
-<a href="https://leifrogers.github.io/internetmagic/lines.html">Example Here</a>
+<a href="https://leifrogers.github.io/internetmagic/lines.html">Black and White Example</a>
+<a href="https://leifrogers.github.io/internetmagic/colorlines.html">Random Color Example</a>
 
 # Falling Rows
 Color shifting rows go down the screen.  Sorta trippy to watch for a prolonged amount of time.

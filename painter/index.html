@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>P5js Painter Pixel 8bit Thing!</title>
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -25,160 +25,165 @@
 </head>
 
 <body>
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
 
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-dark active" onclick="setBrush(1)">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Point
-                    </label>
-                    <label class="btn btn-outline-dark" onclick="setBrush(2)">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Circle
-                    </label>
-                    <label class="btn btn-outline-dark" onclick="setBrush(3)">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> Line
-                    </label>
-                    <label class="btn btn-outline-dark" onclick="setBrush(4)">
-                        <input type="radio" name="options" id="option4" autocomplete="off"> Quad
-                    </label>
-                    <label class="btn btn-outline-dark" onclick="setBrush(5)">
-                        <input type="radio" name="options" id="option5" autocomplete="off"> Eraser
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" id="svg" class="btn btn-outline-dark" data-toggle="modal"
-                                data-target="#myModal" onclick="showSVG()">Display SVG Code
-                        </button>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-dark active" onclick="setBrush(1)">
+                            <input type="radio" name="options" id="option1" autocomplete="off" checked> Point
+                        </label>
+                        <label class="btn btn-outline-dark" onclick="setBrush(2)">
+                            <input type="radio" name="options" id="option2" autocomplete="off"> Circle
+                        </label>
+                        <label class="btn btn-outline-dark" onclick="setBrush(3)">
+                            <input type="radio" name="options" id="option3" autocomplete="off"> Line
+                        </label>
+                        <label class="btn btn-outline-dark" onclick="setBrush(4)">
+                            <input type="radio" name="options" id="option4" autocomplete="off"> Quad
+                        </label>
+                        <label class="btn btn-outline-dark" onclick="setBrush(5)">
+                            <input type="radio" name="options" id="option5" autocomplete="off"> Eraser
+                        </label>
                     </div>
                 </div>
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div id="svgDisplay" class="modal-body">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-outline-dark" onClick="selectText('svgCode')">Copy SVG
-                                    Code to Clipboard
-                                </button>
+                <div class="col-md-4">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="svg" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModal"
+                                onclick="showSVG()">Display SVG Code
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div id="svgDisplay" class="modal-body">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-outline-dark" onClick="selectText('svgCode')">Copy
+                                        SVG
+                                        Code to Clipboard
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" id="help" class="btn btn-outline-dark" data-toggle="modal"
+                <div class="col-md-4">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="help" class="btn btn-outline-dark" data-toggle="modal"
                                 data-target="#helpModal">Help
-                        </button>
+                            </button>
 
+                        </div>
                     </div>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpLabel">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div id="helpDisplay" class="modal-body">
-                                <h1>Help for P5js 8bit Painter Thing
-                                </h1>
-                                <ul>
-                                    <li>To paint, click the mouse (or click and drag) around the canvas on the left to paint.</li>
-                                    <li>Selecting a different color palette resets the canvas</li>
-                                    <li>The right arrow key (or center mouse button) performs a paint bucket type fill wherever the cursor is located</li>
-                                    <li>The left arrow key clears the canvas</li>
-                                    <li>Right-click on the canvas to save your work as a png!</li>
-                                    <li>There are essentially two working layers - lowRes and hiRes - with hiRes being the top layer</li>
-                                    <hr>
-                                    <li>Known Issues:</li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div id="helpDisplay" class="modal-body">
+                                    <h1>Help for P5js 8bit Painter Thing
+                                    </h1>
                                     <ul>
-                                        <li>clicking on a modal window over the canvas will draw on the canvas</li>
-                                        <li>Sometimes vertical lines on quads don't display</li>
-                                        <li>there is no forgiveness and no undo.</li>
+                                        <li>To paint, click the mouse (or click and drag) around the canvas on the left
+                                            to paint.</li>
+                                        <li>Selecting a different color palette resets the canvas</li>
+                                        <li>The right arrow key (or center mouse button) performs a paint bucket type
+                                            fill wherever the cursor is located</li>
+                                        <li>The left arrow key clears the canvas</li>
+                                        <li>Right-click on the canvas to save your work as a png!</li>
+                                        <li>There are essentially two working layers - lowRes and hiRes - with hiRes
+                                            being the top layer</li>
+                                        <hr>
+                                        <li>Known Issues:</li>
+                                        <ul>
+                                            <li>clicking on a modal window over the canvas will draw on the canvas</li>
+                                            <li>Sometimes vertical lines on quads don't display</li>
+                                            <li>there is no forgiveness and no undo.</li>
 
+                                        </ul>
                                     </ul>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <div id="circleInfo">
+                    </div>
+                    <h4>Color Mode</h4>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-dark active" onclick="switchPalette('c64')">
+                            <input type="radio" name="options" id="option1" autocomplete="off" checked> C64
+                        </label>
+                        <label class="btn btn-outline-dark" onclick="switchPalette('trs-80')">
+                            <input type="radio" name="options" id="option2" autocomplete="off"> TRS-80
+                        </label>
+                        <label class="btn btn-outline-dark" onclick="switchPalette('nesColors')">
+                            <input type="radio" name="options" id="option3" autocomplete="off"> NES
+                        </label>
+                    </div>
+                    <h4>Select a Color</h4>
+                    <div id="palette">
+
+                    </div>
+                    <p>Current Color:
+                        <svg id="currentColor" width="200" height="15">
+                            <rect id="color" width="190" height="15" />
+                        </svg>
+                    </p>
+                    <hr>
+                    <h4>Detail Mode</h4>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-dark active" onclick="switchGrid(0)">
+                            <input type="radio" name="options" id="option1" autocomplete="off" checked> Low-Res
+                        </label>
+                        <label class="btn btn-outline-dark" onclick="switchGrid(1)">
+                            <input type="radio" name="options" id="option2" autocomplete="off"> Hi-Res
+                        </label>
+                    </div>
+                </div>
+                <div id="grid" class="col-md-8" style="cursor: default;">
+                </div>
             </div>
 
         </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-4">
-                <div id="circleInfo">
-                </div>
-                <h4>Color Mode</h4>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-dark active" onclick="switchPalette('c64')">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked> C64
-                    </label>
-                    <label class="btn btn-outline-dark" onclick="switchPalette('trs-80')">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> TRS-80
-                    </label>
-                    <label class="btn btn-outline-dark" onclick="switchPalette('nesColors')">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> NES
-                    </label>
-                </div>
-                <h4>Select a Color</h4>
-                <div id="palette">
-
-                </div>
-                <p>Current Color:
-                    <svg id="currentColor" width="200" height="15">
-                        <rect id="color" width="190" height="15"/>
-                    </svg>
-                </p>
-                <hr>
-                <h4>Detail Mode</h4>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-dark active" onclick="switchGrid(0)">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Low-Res
-                    </label>
-                    <label class="btn btn-outline-dark" onclick="switchGrid(1)">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Hi-Res
-                    </label>
-                </div>
-            </div>
-            <div id="grid" class="col-md-8" style="cursor: default;">
-            </div>
-        </div>
-
-    </div>
-</section>
-<hr>
-<script>
-    $(document).ready(function () {
-        $("#palette").html("");
-        $.ajax({
-            url: "palettes/c64.html",
-            type: "GET",
-            dataType: "html",
-            success: function (html) {
-                $("#palette").html(html);
-            }
+    </section>
+    <hr>
+    <script>
+        $(document).ready(function () {
+            $("#palette").html("");
+            $.ajax({
+                url: "palettes/c64.html",
+                type: "GET",
+                dataType: "html",
+                success: function (html) {
+                    $("#palette").html(html);
+                }
+            });
         });
-    });
-</script>
+    </script>
 </body>
+
 </html>

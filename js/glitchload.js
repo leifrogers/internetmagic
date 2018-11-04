@@ -1,3 +1,6 @@
+/**
+ * just a twinkle in the eye for right now
+ */
 var img;
 function preload() {
   img = loadImage(glitchURL);
