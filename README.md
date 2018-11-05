@@ -19,8 +19,9 @@ Makes some randomly colored lines and moves them about...randomly.
 
 # Falling Rows
 Greyscale shifting rows go down the screen.  Sorta trippy to watch for a prolonged amount of time.  Now with row number parameter (fallingrows.html?rows={number of rows})
-<a href="https://leifrogers.github.io/internetmagic/fallingrows.html">Base example Here</a>
-<a href="https://leifrogers.github.io/internetmagic/fallingrows.html?rows=80">80 row example</a>
+
+<a href="https://leifrogers.github.io/internetmagic/fallingrows.html">Base example Here</a><br>
+<a href="https://leifrogers.github.io/internetmagic/fallingrows.html?rows=80">80 row example</a><br>
 <a href="https://leifrogers.github.io/internetmagic/fallingrows.html?rows=200">80 row example</a>
 
 # Painter
