@@ -1,6 +1,24 @@
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+let numberOfRows = 50;
+var numberRows = getParameterByName('rows'); 
+
+if (!isNaN(numberRows)&&(numberRows != null))
+    {
+        numberOfRows = numberRows;
+    }
+    
 let theRowColor = [];
 let theRowFlipper = [];
-const numberOfRows = 50;
+
 let grader = 0;
 
 function setup() {
@@ -15,8 +33,7 @@ function setup() {
     for (let i = numberOfRows; i >= 0; i--) {
         if (flipper === true) {
             colors = colors - grader;
-        }
-        else {
+        } else {
             colors = colors + grader;
         }
         if (colors > 255) {
@@ -37,9 +54,10 @@ function draw() {
 
 function drawRows() {
     "use strict";
-    for (let currentRow = numberOfRows; currentRow >= 0; currentRow--) {
+    let boxheight = windowHeight / numberOfRows;
+    for (let currentRow = 0; currentRow < numberOfRows; currentRow++) {
         fill(theRowColor[currentRow]);
-        rect(0, (currentRow * numberOfRows), windowWidth, (windowHeight / numberOfRows));
+        rect(0, (currentRow * boxheight), windowWidth, (boxheight + (currentRow * (boxheight))));
         if (theRowFlipper[currentRow] === true) {
             theRowColor[currentRow] = theRowColor[currentRow] + grader;
         }
@@ -54,6 +72,3 @@ function drawRows() {
         }
     }
 }
-
-
-

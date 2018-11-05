@@ -23,7 +23,7 @@ function fillBackground(){
     for (let i = 0; i < width; i++) {
         for (let j = 0; j < height; j++) {
             if (display === 1) {
-                gradient.stroke(randomLevel, i, j,);
+                gradient.stroke(randomLevel, i, j);
             }
             if (display === 2) {
                 gradient.stroke(i, randomLevel, j);

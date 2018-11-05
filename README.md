@@ -18,8 +18,10 @@ Makes some randomly colored lines and moves them about...randomly.
 <a href="https://leifrogers.github.io/internetmagic/colorlines.html">Random Color Example</a>
 
 # Falling Rows
-Color shifting rows go down the screen.  Sorta trippy to watch for a prolonged amount of time.
-<a href="https://leifrogers.github.io/internetmagic/fallingrows.html">Example Here</a>
+Greyscale shifting rows go down the screen.  Sorta trippy to watch for a prolonged amount of time.  Now with row number parameter (fallingrows.html?rows={number of rows})
+<a href="https://leifrogers.github.io/internetmagic/fallingrows.html">Base example Here</a>
+<a href="https://leifrogers.github.io/internetmagic/fallingrows.html?rows=80">80 row example</a>
+<a href="https://leifrogers.github.io/internetmagic/fallingrows.html?rows=200">80 row example</a>
 
 # Painter
  is a bigger project but still mostly just a late night coding whim.  It's purpose is to be sort of like an 8bit pixel art painter thing.  I can't really define nor does it really need to be--I just wanted to do it in p5js.  It can be found in action <a href="https://leifrogers.github.io/internetmagic/painter/">here</a>
