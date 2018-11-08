@@ -85,9 +85,9 @@ function mousePressed() {
             newPoint = [mouseX, mouseY];
         }
     }
-    if (mouseButton == RIGHT && mouseOnGrid()) {
-        save();
-    }
+    // if (mouseButton == RIGHT && mouseOnGrid()) {
+    //    save();
+    // }
     if (mouseButton == CENTER && mouseOnGrid()) {
         fillColor();
     }
@@ -133,7 +133,7 @@ function keyPressed() {
         }
     }
     if (keyCode === DOWN_ARROW) {
-        drawCircle(mouseX, mouseY, 100);
+        save();
     }
 }
 
