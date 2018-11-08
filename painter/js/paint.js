@@ -182,8 +182,9 @@ function getTotalCurrentBox(x, y) {
     while (len--) {
         len2 = gridDetails[currentGrid][3];
         while (len2--) {
-            endX = totalGrid[currentGrid][len][len2][0] + gridDetails[currentGrid][0] - 1;
-            endY = totalGrid[currentGrid][len][len2][1] + gridDetails[currentGrid][1] - 1;
+            // took away the minus 1
+            endX = totalGrid[currentGrid][len][len2][0] + gridDetails[currentGrid][0];
+            endY = totalGrid[currentGrid][len][len2][1] + gridDetails[currentGrid][1];
             if ((x >= totalGrid[currentGrid][len][len2][0]) && (x <= endX) && (y >= totalGrid[currentGrid][len][len2][1] ) && (y <= endY)) {
                 return totalGrid[currentGrid][len][len2];
             }
