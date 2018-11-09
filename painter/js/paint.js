@@ -42,7 +42,7 @@ function draw() {
             _currentRadius = $("#radius").val();
             drawCircle(mouseX, mouseY, _currentRadius, true);
         }
-        if (mouseIsPressed) {
+      if (mouseIsPressed) {
             if (brush === 3) {
                 drawAll();
                 drawLine(oldPoint[0], oldPoint[1], newPoint[0], newPoint[1], true);
@@ -439,13 +439,13 @@ function floodTotalFill(x, y, oldCode, newCode, canvasWidth, canvasHeight) {
 
 function fillCircle(x, y, r, preview) {
     while (r--) {
-        drawCircle(x, y, r, preview)
+        drawCircle(x, y, r, preview);
     }
 }
 
 
 function setBrush(i) {
-    brush = i
+    brush = i;
     function getPalette() {
         if (brush === 2) {
             $(document).ready(function () {
@@ -474,7 +474,7 @@ function switchPalette(palette) {
         setColor(124, 124, 124, 0);
     }
     if (palette === 'trs-80') {
-        setColor(0, 128, 0, 0)
+        setColor(0, 128, 0, 0);
     }
     function getPalette() {
         $(document).ready(function () {
