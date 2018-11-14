@@ -1,0 +1,33 @@
+{
+  "name": "internetmagic",
+  "version": "1.0.0",
+  "description": "p5js projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leifrogers/internetmagic.git"
+  },
+  "keywords": [
+    "p5js",
+    "generative",
+    "art"
+  ],
+  "author": "Leif Rogers",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/leifrogers/internetmagic/issues"
+  },
+  "homepage": "https://github.com/leifrogers/internetmagic#readme",
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-google": "^0.11.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
+}

@@ -52,7 +52,7 @@ function draw() {
             _currentRadius = $('#radius').val();
             drawCircle(mouseX, mouseY, _currentRadius, true);
         }
-        if (mouseIsPressed) {
+      if (mouseIsPressed) {
             if (brush === 3) {
                 drawAll();
                 drawLine(oldPoint[0], oldPoint[1], newPoint[0], newPoint[1], true);
@@ -451,7 +451,6 @@ function fillCircle(x, y, r, preview) {
 
 function setBrush(i) {
     brush = i;
-
     function getPalette() {
         if (brush === 2) {
             $(document).ready(function () {
