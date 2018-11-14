@@ -1,13 +1,23 @@
-"use strict";
+/*global $,
+ createCanvas, frameRate, save, fill, rect, PI, int,
+ noStroke, noSmooth, background, height, width,
+ mouseX, mouseY, mouseIsPressed, mouseButton,
+ LEFT_ARROW, RIGHT_ARROW, DOWN_ARROW, keyCode,
+ CENTER, LEFT */
+
+'use strict';
 
 var totalGrid = [];
-var gridDetails = [[8, 16], [8, 8]];
+var gridDetails = [
+    [8, 16],
+    [8, 8]
+];
 var currentGrid = 0;
 var curR = 0;
 var curG = 0;
 var curB = 0;
 var curColor = 0;
-var _currentFill = "rgb(136, 0, 0);stroke-width:1;stroke:rgb(0,0,0)";
+var _currentFill = 'rgb(136, 0, 0);stroke-width:1;stroke:rgb(0,0,0)';
 var _currentRadius = 100;
 var brush = 1;
 var oldPoint = [0, 0];
@@ -39,7 +49,7 @@ function draw() {
     if (mouseOnGrid()) {
         if (brush === 2) {
             drawAll();
-            _currentRadius = $("#radius").val();
+            _currentRadius = $('#radius').val();
             drawCircle(mouseX, mouseY, _currentRadius, true);
         }
         if (mouseIsPressed) {
@@ -65,7 +75,7 @@ function draw() {
 function mouseClicked() {
     if (mouseButton == LEFT && mouseOnGrid()) {
         if (brush === 2) {
-            _currentRadius = $("#radius").val();
+            _currentRadius = $('#radius').val();
             drawCircle(mouseX, mouseY, _currentRadius, false);
         }
         if (brush === 1) {
@@ -127,8 +137,7 @@ function keyPressed() {
     if (keyCode === RIGHT_ARROW) {
         if (brush === 2) {
             fillCircle(mouseX, mouseY, _currentRadius, false);
-        }
-        else {
+        } else {
             fillColor();
         }
     }
@@ -164,14 +173,20 @@ function getLocation(box) {
     //console.log(mouseX + " " + mouseY);
     curCol = box[0] / gridDetails[currentGrid][0];
     curRow = box[1] / gridDetails[currentGrid][1];
-    return {curRow: curRow, curCol: curCol};
+    return {
+        curRow: curRow,
+        curCol: curCol
+    };
 }
 
 function getSpecificLocation(grid, box) {
     var curRow, curCol;
     curCol = box[0] / gridDetails[grid][0];
     curRow = box[1] / gridDetails[grid][1];
-    return {curRow: curRow, curCol: curCol};
+    return {
+        curRow: curRow,
+        curCol: curCol
+    };
 }
 
 function getTotalCurrentBox(x, y) {
@@ -185,7 +200,7 @@ function getTotalCurrentBox(x, y) {
             // took away the minus 1
             endX = totalGrid[currentGrid][len][len2][0] + gridDetails[currentGrid][0];
             endY = totalGrid[currentGrid][len][len2][1] + gridDetails[currentGrid][1];
-            if ((x >= totalGrid[currentGrid][len][len2][0]) && (x <= endX) && (y >= totalGrid[currentGrid][len][len2][1] ) && (y <= endY)) {
+            if ((x >= totalGrid[currentGrid][len][len2][0]) && (x <= endX) && (y >= totalGrid[currentGrid][len][len2][1]) && (y <= endY)) {
                 return totalGrid[currentGrid][len][len2];
             }
         }
@@ -202,7 +217,7 @@ function getSpecificCurrentBox(grid, x, y) {
         while (len2--) {
             endX = totalGrid[grid][len][len2][0] + gridDetails[grid][0] - 1;
             endY = totalGrid[grid][len][len2][1] + gridDetails[grid][1] - 1;
-            if ((x >= totalGrid[grid][len][len2][0]) && (x <= endX) && (y >= totalGrid[grid][len][len2][1] ) && (y <= endY)) {
+            if ((x >= totalGrid[grid][len][len2][0]) && (x <= endX) && (y >= totalGrid[grid][len][len2][1]) && (y <= endY)) {
                 return totalGrid[grid][len][len2];
             }
         }
@@ -216,8 +231,7 @@ function setTotalBox(clear, grid, i, j) {
         totalGrid[grid][i][j][4] = 255;
         totalGrid[grid][i][j][5] = 0;
         totalGrid[grid][i][j][6] = -1;
-    }
-    else {
+    } else {
         totalGrid[grid][i][j][2] = curR;
         totalGrid[grid][i][j][3] = curG;
         totalGrid[grid][i][j][4] = curB;
@@ -231,9 +245,9 @@ function setColor(r, g, b, cCode) {
     curG = g;
     curB = b;
     curColor = cCode;
-    var $svg = $("#currentColor");
+    var $svg = $('#currentColor');
     _currentFill = `rgb(${curR}, ${curG}, ${curB});stroke-width:2;stroke:rgb(0,0,0)`;
-    $("#color", $svg).attr('style', "fill:" + _currentFill);
+    $('#color', $svg).attr('style', 'fill:' + _currentFill);
 
 }
 
@@ -264,8 +278,7 @@ function drawSome() {
     if (ret2.curRow & 1) {
         fill(totalGrid[1][__retAbove][ret2.curCol][2], totalGrid[1][__retAbove][ret2.curCol][3], totalGrid[1][__retAbove][ret2.curCol][4], totalGrid[1][__retAbove][ret2.curCol][5]);
         rect(totalGrid[1][__retAbove][ret2.curCol][0], totalGrid[1][__retAbove][ret2.curCol][1], gridDetails[1][0], gridDetails[1][1]);
-    }
-    else {
+    } else {
         fill(totalGrid[1][__retBelow][ret2.curCol][2], totalGrid[1][__retBelow][ret2.curCol][3], totalGrid[1][__retBelow][ret2.curCol][4], totalGrid[1][__retBelow][ret2.curCol][5]);
         rect(totalGrid[1][__retBelow][ret2.curCol][0], totalGrid[1][__retBelow][ret2.curCol][1], gridDetails[1][0], gridDetails[1][1]);
     }
@@ -289,8 +302,7 @@ function drawSuperFastBoxes() {
 function drawBox(grid, i, j, preview) {
     if (preview) {
         fill(curR, curG, curB);
-    }
-    else {
+    } else {
         fill(totalGrid[grid][i][j][2], totalGrid[grid][i][j][3], totalGrid[grid][i][j][4], totalGrid[grid][i][j][5]);
     }
     rect(totalGrid[grid][i][j][0], totalGrid[grid][i][j][1], gridDetails[grid][0], gridDetails[grid][1]);
@@ -309,7 +321,7 @@ function clearGrid() {
             }
         }
     }
-    drawAll()
+    drawAll();
 }
 
 
@@ -320,15 +332,13 @@ function drawDot() {
         var __ret = getLocation(box);
         setTotalBox(false, currentGrid, __ret.curRow, __ret.curCol);
         drawBox(currentGrid, __ret.curRow, __ret.curCol, false);
-    }
-    catch(ex){};
+    } catch (ex) {}
 }
 
 function tryShape(__ret, preview) {
     if (preview) {
         drawBox(currentGrid, __ret.curRow, __ret.curCol, true);
-    }
-    else {
+    } else {
         setTotalBox(false, currentGrid, __ret.curRow, __ret.curCol);
         drawBox(currentGrid, __ret.curRow, __ret.curCol, false);
     }
@@ -348,26 +358,23 @@ function drawCircle(x, y, r, preview) {
             //tryShape(__ret, preview);
             if (preview) {
                 drawBox(currentGrid, __ret.curRow, __ret.curCol, true);
-            }
-            else {
+            } else {
                 setTotalBox(false, currentGrid, __ret.curRow, __ret.curCol);
                 drawBox(currentGrid, __ret.curRow, __ret.curCol, false);
             }
-        }
-        catch (ex) {
-        }
+        } catch (ex) {}
     }
 }
 
 function drawSquare(preview) {
-    //topLeft-x = oldPoint[0];
-    //topLeft-y = oldPoint[1];
-    //bottomLeft-x = oldPoint[0];
-    //bottomLeft-y = newPoint[1];
-    //topRight-x = newPoint[0];
-    //topRight-y = oldPoint[1];
-    //bottomRight-x = newPoint[0];
-    //bottomRight-y = newPoint[1];
+    // topLeft-x = oldPoint[0];
+    // topLeft-y = oldPoint[1];
+    // bottomLeft-x = oldPoint[0];
+    // bottomLeft-y = newPoint[1];
+    // topRight-x = newPoint[0];
+    // topRight-y = oldPoint[1];
+    // bottomRight-x = newPoint[0];
+    // bottomRight-y = newPoint[1];
 
     drawLine(oldPoint[0], oldPoint[1], newPoint[0], oldPoint[1], preview);
     drawLine(oldPoint[0], newPoint[1], newPoint[0], newPoint[1], preview);
@@ -389,9 +396,7 @@ function drawLine(x0, y0, x1, y1, preview) {
         try {
             __ret = getLocation(box);
             tryShape(__ret, preview);
-        }
-        catch (ex) {
-        }
+        } catch (ex) {}
         if ((x0 == x1) && (y0 == y1)) break;
         e2 = 2 * err;
         if (e2 > -dy) {
@@ -439,25 +444,25 @@ function floodTotalFill(x, y, oldCode, newCode, canvasWidth, canvasHeight) {
 
 function fillCircle(x, y, r, preview) {
     while (r--) {
-        drawCircle(x, y, r, preview)
+        drawCircle(x, y, r, preview);
     }
 }
 
 
 function setBrush(i) {
-    brush = i
+    brush = i;
+
     function getPalette() {
         if (brush === 2) {
             $(document).ready(function () {
-                $("#circleInfo").html("Radius of circle\n" +
-                    "<br>\n" +
-                    "        <input id=\"radius\" type=\"range\" min=\"0\" max=\"300\" value=\"50\">");
+                $('#circleInfo').html('Radius of circle\n' +
+                    '<br>\n' +
+                    '        <input id="radius" type="range" min="0" max="300" value="50">');
 
             });
-        }
-        else{
+        } else {
             $(document).ready(function () {
-                $("#circleInfo").html("");
+                $('#circleInfo').html('');
             });
         }
     }
@@ -474,17 +479,18 @@ function switchPalette(palette) {
         setColor(124, 124, 124, 0);
     }
     if (palette === 'trs-80') {
-        setColor(0, 128, 0, 0)
+        setColor(0, 128, 0, 0);
     }
+
     function getPalette() {
         $(document).ready(function () {
-            $("#palette").html("");
+            $('#palette').html('');
             $.ajax({
-                url: "palettes/" + palette + ".html",
-                type: "GET",
-                dataType: "html",
+                url: 'palettes/' + palette + '.html',
+                type: 'GET',
+                dataType: 'html',
                 success: function (html) {
-                    $("#palette").html(html);
+                    $('#palette').html(html);
                 }
             });
         });
@@ -506,19 +512,19 @@ function mouseOnGrid() {
     return (mouseX < width && mouseX > 0 && mouseY < height && mouseY > 0);
 }
 
-function showSVG(){
+function showSVG() {
 
-    var header = '<svg version="1.1" baseProfile="full" height="'+ height +'" width="'+ width +'" xmlns="http://www.w3.org/2000/svg">';
+    var header = '<svg version="1.1" baseProfile="full" height="' + height + '" width="' + width + '" xmlns="http://www.w3.org/2000/svg">';
     var middle = drawSuperFastSVG();
-    var closer = "</svg>";
+    var closer = '</svg>';
     var all = header + middle + closer;
-    var displayCode = all.replace(/</g, "&lt;").replace(/>/g,"&gt;");
+    var displayCode = all.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-    $(`#svgDisplay`).html(all + "<hr><code id='svgCode'>" + displayCode + "</code>");
+    $('#svgDisplay').html(all + '<hr><code id=\'svgCode\'>' + displayCode + '</code>');
 }
 
 function drawSuperFastSVG() {
-    var middle = "";
+    var middle = '';
     var grids = totalGrid.length;
     for (var grid = 0; grid < grids; grid++) {
         var len = gridDetails[grid][2];
@@ -527,7 +533,7 @@ function drawSuperFastSVG() {
             len3 = gridDetails[grid][3];
             while (len3--) {
                 if (totalGrid[grid][len][len3][5] === 255)
-                    middle += '<rect x="'+ totalGrid[grid][len][len3][0] + '" y="'+totalGrid[grid][len][len3][1] +'" width="' +gridDetails[grid][0] +'" height="' + gridDetails[grid][1] +'" fill="rgb('+ totalGrid[grid][len][len3][2] + ',' + totalGrid[grid][len][len3][3] + ',' +totalGrid[grid][len][len3][4] + ')"/>';
+                    middle += '<rect x="' + totalGrid[grid][len][len3][0] + '" y="' + totalGrid[grid][len][len3][1] + '" width="' + gridDetails[grid][0] + '" height="' + gridDetails[grid][1] + '" fill="rgb(' + totalGrid[grid][len][len3][2] + ',' + totalGrid[grid][len][len3][3] + ',' + totalGrid[grid][len][len3][4] + ')"/>';
             }
 
         }
@@ -536,19 +542,19 @@ function drawSuperFastSVG() {
 }
 
 function selectText(element) {
-    var doc = document, text = doc.getElementById(element);
+    var doc = document,
+        text = doc.getElementById(element);
     if (doc.body.createTextRange) {
         var range = document.body.createTextRange();
         range.moveToElementText(text);
         range.select();
-        document.execCommand("Copy");
-    }
-    else if (window.getSelection) {
+        document.execCommand('Copy');
+    } else if (window.getSelection) {
         var selection = window.getSelection();
         var range2 = document.createRange();
         range2.selectNodeContents(text);
         selection.removeAllRanges();
         selection.addRange(range2);
-        document.execCommand("Copy");
+        document.execCommand('Copy');
     }
 }
