@@ -1,0 +1,14 @@
+{
+  "libs": [
+    "jquery"
+  ],
+  "loadEagerly": [
+    "./**/*.js"
+  ],
+  "dontLoad": [
+    "./bower_components/"
+  ],
+  "plugins": {
+    
+  }
+}
